@@ -8,4 +8,5 @@ import org.springframework.stereotype.Service;
 public interface EmployeeService {
     EmployeeResponse getAllEmployees();
     EmployeeDto getEmployee(long id);
+    EmployeeResponse getEmployeeByNameAndSurname(String name,String surname);
 }

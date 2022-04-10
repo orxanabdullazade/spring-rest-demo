@@ -26,9 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .stream()
                 .map(employee -> convertToDto(employee))
                 .collect(Collectors.toList());
-        return EmployeeResponse.builder()
-                .employees(employeeDtoList)
-                .build();
+        return makeEmployeeResponse(employeeDtoList);
     }
 
     @Override
@@ -38,9 +36,25 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .orElseThrow(()->new CustomRestException(ErrorCodeEnum.EMPLOYEE_NOT_FOUND));
     }
 
+    @Override
+    public EmployeeResponse getEmployeeByNameAndSurname(String name, String surname) {
+        List<EmployeeDto> employeeDtoList= employeeRepository.findByNameAndSurname(name,surname)
+                .stream()
+                .map(employee -> convertToDto(employee))
+                .collect(Collectors.toList());
+        return makeEmployeeResponse(employeeDtoList);
+    }
+
     private EmployeeDto convertToDto(Employee employee) {
         EmployeeDto employeeDto=new EmployeeDto();
         BeanUtils.copyProperties(employee,employeeDto);
         return employeeDto;
     }
+
+    private EmployeeResponse makeEmployeeResponse(List<EmployeeDto> employees){
+        return EmployeeResponse.builder()
+                .employees(employees)
+                .build();
+    }
+
 }

@@ -4,10 +4,7 @@ import az.spring.rest.demo.springrestdemo.rest.model.dto.EmployeeDto;
 import az.spring.rest.demo.springrestdemo.rest.model.response.EmployeeResponse;
 import az.spring.rest.demo.springrestdemo.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,6 +21,13 @@ public class EmployeeController {
     @GetMapping("/{employee-id}")
     public EmployeeDto getEmployee(@PathVariable("employee-id") long id){
         return employeeService.getEmployee(id);
+    }
+
+    @GetMapping("/search")
+    public EmployeeResponse getEmployeeByNameAndSurname(
+            @RequestParam("name") String name,
+            @RequestParam("surname") String surname){
+        return employeeService.getEmployeeByNameAndSurname(name,surname);
     }
 
 }
