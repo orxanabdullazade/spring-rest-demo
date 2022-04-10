@@ -5,7 +5,10 @@ spring:
     password: 2001
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
 
 server:
   port: 8088
+  servlet:
+    context-path: /api
+

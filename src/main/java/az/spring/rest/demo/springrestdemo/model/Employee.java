@@ -1,10 +1,19 @@
 package az.spring.rest.demo.springrestdemo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import lombok.Data;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "employee")
+@Data
 public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
+    private String name;
+    private String surname;
+    private int age;
+    private double salary;
 }
