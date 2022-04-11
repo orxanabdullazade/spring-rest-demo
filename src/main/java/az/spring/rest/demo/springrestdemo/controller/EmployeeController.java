@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.annotation.Target;
@@ -35,6 +36,12 @@ public class EmployeeController {
             @RequestParam("name") String name,
             @RequestParam("surname") String surname){
         return employeeService.getEmployeeByNameAndSurname(name,surname);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void insert(@RequestBody EmployeeDto employeeDto){
+        employeeService.insert(employeeDto);
     }
 
 }

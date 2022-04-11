@@ -45,6 +45,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         return makeEmployeeResponse(employeeDtoList);
     }
 
+    @Override
+    public void insert(EmployeeDto employeeDto) {
+        Employee employee=new Employee();
+        BeanUtils.copyProperties(employeeDto,employee);
+        employeeRepository.save(employee);
+    }
+
     private EmployeeDto convertToDto(Employee employee) {
         EmployeeDto employeeDto=new EmployeeDto();
         BeanUtils.copyProperties(employee,employeeDto);
