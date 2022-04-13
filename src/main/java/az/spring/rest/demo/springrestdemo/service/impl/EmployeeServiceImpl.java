@@ -52,6 +52,23 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepository.save(employee);
     }
 
+    @Override
+    public void update(EmployeeDto employeeDto, long id) {
+       Employee employee= employeeRepository.findById(id).orElseThrow(()->new CustomRestException(ErrorCodeEnum.EMPLOYEE_NOT_FOUND));
+
+        employee.setName(employeeDto.getName());
+        employee.setSurname(employeeDto.getSurname());
+        employee.setAge(employeeDto.getAge());
+        employee.setSalary(employeeDto.getSalary());
+        employeeRepository.save(employee);
+    }
+
+    @Override
+    public void delete(long id) {
+        Employee employee=employeeRepository.findById(id).orElseThrow(()->new CustomRestException(ErrorCodeEnum.EMPLOYEE_NOT_FOUND));
+        employeeRepository.delete(employee);
+    }
+
     private EmployeeDto convertToDto(Employee employee) {
         EmployeeDto employeeDto=new EmployeeDto();
         BeanUtils.copyProperties(employee,employeeDto);

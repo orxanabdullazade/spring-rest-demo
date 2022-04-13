@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.annotation.Target;
@@ -21,8 +22,8 @@ public class EmployeeController {
     public final EmployeeService employeeService;
 
     @GetMapping
-    public EmployeeResponse getAllEmployee(){
-       return employeeService.getAllEmployees();
+    public ResponseEntity<EmployeeResponse> getAllEmployee(){
+       return ResponseEntity.ok(employeeService.getAllEmployees());
     }
 
     @GetMapping("/{employee-id}")
@@ -40,8 +41,21 @@ public class EmployeeController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void insert(@RequestBody EmployeeDto employeeDto){
+    public void insert(@RequestBody EmployeeDto employeeDto ){
         employeeService.insert(employeeDto);
     }
+
+    @PutMapping("/{id}")
+    public void update(@RequestBody EmployeeDto employeeDto,@PathVariable("id") long id){
+       employeeService.update(employeeDto,id);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable("id") long id){
+        employeeService.delete(id);
+    }
+
+
 
 }
