@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.lang.annotation.Target;
 
 @RestController
@@ -41,12 +42,12 @@ public class EmployeeController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void insert(@RequestBody EmployeeDto employeeDto ){
+    public void insert(@Valid @RequestBody EmployeeDto employeeDto ){
         employeeService.insert(employeeDto);
     }
 
     @PutMapping("/{id}")
-    public void update(@RequestBody EmployeeDto employeeDto,@PathVariable("id") long id){
+    public void update(@Valid @RequestBody EmployeeDto employeeDto, @PathVariable("id") long id){
        employeeService.update(employeeDto,id);
     }
 
