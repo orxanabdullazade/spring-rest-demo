@@ -6,7 +6,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
-
+#  security:
+#    user:
+#      name: orxan
+#      password: 12345
 server:
   port: 8088
 #  servlet:
