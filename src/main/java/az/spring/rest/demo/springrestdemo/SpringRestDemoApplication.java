@@ -4,6 +4,8 @@ import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 
 @SpringBootApplication
 @OpenAPIDefinition(
@@ -13,6 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
                 version = "v1"
         )
 )
+@EnableMethodSecurity
 public class SpringRestDemoApplication {
 
     public static void main(String[] args) {
