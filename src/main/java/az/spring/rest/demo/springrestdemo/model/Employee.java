@@ -12,6 +12,9 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @ManyToOne
+    private Department department;
+
     private String name;
     private String surname;
     private int age;
