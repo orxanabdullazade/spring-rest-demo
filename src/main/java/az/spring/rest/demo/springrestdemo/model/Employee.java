@@ -3,6 +3,7 @@ package az.spring.rest.demo.springrestdemo.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "employee")
@@ -12,8 +13,15 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "dep_id")
     private Department department;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private Address address;
+
+    @ManyToMany(mappedBy = "employees")
+    private List<Project> projects;
 
     private String name;
     private String surname;
