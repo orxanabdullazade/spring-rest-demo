@@ -11,5 +11,5 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmployeeResponse {
-    private List<EmployeeDto>employees;
+    private List<EmployeeDto> employees;
 }

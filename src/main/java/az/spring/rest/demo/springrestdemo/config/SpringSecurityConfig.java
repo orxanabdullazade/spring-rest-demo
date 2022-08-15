@@ -8,30 +8,31 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("orxan")
-                .password("12345")
-                .roles("USER")
-                .and()
-                .withUser("admin")
-                .password("12345")
-                .roles("ADMIN");
-    }
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.inMemoryAuthentication()
+//                .withUser("orxan")
+//                .password("12345")
+//                .roles("USER")
+//                .and()
+//                .withUser("admin")
+//                .password("12345")
+//                .roles("ADMIN");
+//    }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/welcome")
-                .permitAll()
-                .antMatchers("/employees")
-                .hasRole("ADMIN")
-                .anyRequest()
-                .authenticated()
-                .and()
-                .formLogin()
-                .and()
-                .logout();
-    }
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.authorizeRequests()
+//                .antMatchers("/welcome")
+//                .permitAll()
+//                .antMatchers("/employees")
+//                .hasRole("ADMIN")
+//                .anyRequest()
+//                .authenticated()
+//                .and()
+//                .formLogin()
+//                .and()
+//                .logout();
+//    }
+
 }
